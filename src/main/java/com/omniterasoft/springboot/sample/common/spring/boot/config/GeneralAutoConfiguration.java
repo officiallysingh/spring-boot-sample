@@ -5,9 +5,7 @@ import com.omniterasoft.springboot.sample.common.spring.boot.pagination.Paginate
 import com.omniterasoft.springboot.sample.common.spring.util.MessageProvider;
 import java.util.concurrent.Executor;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.task.TaskExecutionProperties;
 import org.springframework.boot.autoconfigure.task.TaskSchedulingProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
