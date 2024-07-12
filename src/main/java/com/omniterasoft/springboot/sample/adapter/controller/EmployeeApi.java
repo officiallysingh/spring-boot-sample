@@ -14,6 +14,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import java.util.List;
 import java.util.UUID;
@@ -28,7 +29,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @RequestMapping("/v1/employees")
-// @Tag(name = "Employee", description = "management APIs")
+@Tag(name = "Employee", description = "management APIs")
 public interface EmployeeApi extends Api {
 
   @Operation(
