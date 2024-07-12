@@ -1,11 +1,11 @@
 package com.omniterasoft.springboot.sample;
 
-import com.ksoot.common.spring.util.MessageProvider;
 import com.ksoot.problem.spring.boot.autoconfigure.ProblemJacksonConfiguration;
 import com.ksoot.problem.spring.boot.autoconfigure.web.ProblemWebAutoConfiguration;
 import com.ksoot.problem.spring.boot.autoconfigure.web.WebExceptionHandler;
 import com.ksoot.problem.spring.config.ProblemBeanRegistry;
 import com.ksoot.problem.spring.config.ProblemMessageProviderConfig;
+import com.omniterasoft.springboot.sample.common.spring.util.MessageProvider;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.MessageSource;

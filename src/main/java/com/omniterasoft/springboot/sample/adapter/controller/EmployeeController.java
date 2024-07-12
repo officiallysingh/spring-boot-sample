@@ -1,12 +1,12 @@
 package com.omniterasoft.springboot.sample.adapter.controller;
 
-import static com.ksoot.common.CommonErrorKeys.EMPTY_UPDATE_REQUEST;
+import static com.omniterasoft.springboot.sample.common.CommonErrorKeys.EMPTY_UPDATE_REQUEST;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-import com.ksoot.common.spring.rest.response.APIResponse;
-import com.ksoot.common.spring.util.GeneralMessageResolver;
 import com.ksoot.problem.core.Problems;
+import com.omniterasoft.springboot.sample.common.spring.rest.response.APIResponse;
+import com.omniterasoft.springboot.sample.common.spring.util.GeneralMessageResolver;
 import com.omniterasoft.springboot.sample.domain.mapper.SampleMappers;
 import com.omniterasoft.springboot.sample.domain.model.Employee;
 import com.omniterasoft.springboot.sample.domain.model.dto.EmployeeCreationRQ;

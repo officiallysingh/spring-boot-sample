@@ -22,7 +22,8 @@ public class EmployeeService {
   }
 
   public Employee createEmployee(final EmployeeCreationRQ request) {
-    final Employee employee = Employee.builder().code(request.code()).name(request.name()).build();
+    final Employee employee =
+        Employee.builder().code(request.code()).name(request.name()).dob(request.dob()).build();
     return this.employeeRepository.save(employee);
   }
 
@@ -38,6 +39,7 @@ public class EmployeeService {
     final Employee employee = this.employeeRepository.findById(id).orElseThrow(Problems::notFound);
 
     Optional.ofNullable(request.name()).ifPresent(employee::setName);
+    Optional.ofNullable(request.dob()).ifPresent(employee::setDob);
 
     return this.employeeRepository.save(employee);
   }

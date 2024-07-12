@@ -25,7 +25,6 @@
         <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
 
         <spring-boot-problem-handler.version>1.8</spring-boot-problem-handler.version>
-        <spring-boot-commons.version>1.1</spring-boot-commons.version>
 
         <error_prone_core.version>2.4.0</error_prone_core.version>
         <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
@@ -128,16 +127,11 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- GETS Libraries -->
+        <!-- Misc Libraries -->
         <dependency>
             <groupId>io.github.officiallysingh</groupId>
             <artifactId>spring-boot-problem-handler</artifactId>
             <version>${spring-boot-problem-handler.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.github.officiallysingh</groupId>
-            <artifactId>spring-boot-commons</artifactId>
-            <version>${spring-boot-commons.version}</version>
         </dependency>
     </dependencies>
 
@@ -162,7 +156,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <!--                    <fork>true</fork>-->
-                    <!--<mainClass>com.ksoot.ets.GetsSampleApplication</mainClass>-->
+                    <!--<mainClass>com.omniterasoft.springboot.sample.SpringBootSampleApplication</mainClass>-->
                 </configuration>
                 <executions>
                     <execution>

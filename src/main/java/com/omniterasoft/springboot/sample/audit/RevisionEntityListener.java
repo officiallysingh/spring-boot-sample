@@ -1,7 +1,7 @@
 package com.omniterasoft.springboot.sample.audit;
 
-import com.ksoot.common.CommonConstants;
-import com.ksoot.common.util.DateTimeUtils;
+import com.omniterasoft.springboot.sample.common.CommonConstants;
+import com.omniterasoft.springboot.sample.common.util.DateTimeUtils;
 import org.hibernate.envers.RevisionListener;
 
 public class RevisionEntityListener implements RevisionListener {

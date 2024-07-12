@@ -1,15 +1,10 @@
 package com.omniterasoft.springboot.sample.adapter.controller;
 
-import static com.ksoot.common.spring.rest.ApiConstants.BAD_REQUEST_EXAMPLE_RESPONSE;
-import static com.ksoot.common.spring.rest.ApiConstants.NOT_FOUND_EXAMPLE_RESPONSE;
-import static com.ksoot.common.spring.rest.ApiConstants.RECORD_DELETED_RESPONSE;
-import static com.ksoot.common.spring.rest.ApiStatus.SC_200;
-import static com.ksoot.common.spring.rest.ApiStatus.SC_201;
-import static com.ksoot.common.spring.rest.ApiStatus.SC_400;
-import static com.ksoot.common.spring.rest.ApiStatus.SC_404;
+import static com.omniterasoft.springboot.sample.common.spring.rest.ApiConstants.*;
+import static com.omniterasoft.springboot.sample.common.spring.rest.ApiStatus.*;
 
-import com.ksoot.common.spring.rest.Api;
-import com.ksoot.common.spring.rest.response.APIResponse;
+import com.omniterasoft.springboot.sample.common.spring.rest.Api;
+import com.omniterasoft.springboot.sample.common.spring.rest.response.APIResponse;
 import com.omniterasoft.springboot.sample.domain.model.dto.EmployeeCreationRQ;
 import com.omniterasoft.springboot.sample.domain.model.dto.EmployeeUpdationRQ;
 import com.omniterasoft.springboot.sample.domain.model.dto.EmployeeVM;
@@ -19,7 +14,6 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import java.util.List;
 import java.util.UUID;
@@ -34,7 +28,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @RequestMapping("/v1/employees")
-@Tag(name = "Employee", description = "management APIs")
+// @Tag(name = "Employee", description = "management APIs")
 public interface EmployeeApi extends Api {
 
   @Operation(

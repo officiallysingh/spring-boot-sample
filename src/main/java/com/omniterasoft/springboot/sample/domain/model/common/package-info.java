@@ -23,13 +23,10 @@
 @ConverterRegistration(converter = YesNoConverter.class)
 package com.omniterasoft.springboot.sample.domain.model.common;
 
-import static com.ksoot.common.CommonConstants.GLOBAL_SEQ_ID_GENERATOR;
-import static com.ksoot.common.CommonConstants.GLOBAL_SEQ_INITIAL_VALUE;
-import static com.ksoot.common.CommonConstants.GLOBAL_SEQ_NAME;
-import static com.ksoot.common.CommonConstants.UUID2_GENERATOR;
-
 import org.hibernate.annotations.ConverterRegistration;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.GenericGenerators;
 import org.hibernate.annotations.Parameter;
 import org.hibernate.type.YesNoConverter;
+
+import static com.omniterasoft.springboot.sample.common.CommonConstants.*;
