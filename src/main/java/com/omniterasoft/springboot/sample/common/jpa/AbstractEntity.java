@@ -1,4 +1,4 @@
-package com.omniterasoft.springboot.sample.domain.model.common;
+package com.omniterasoft.springboot.sample.common.jpa;
 
 import static jakarta.persistence.GenerationType.UUID;
 

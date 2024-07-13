@@ -21,7 +21,7 @@
 // @formatter:on
 
 @ConverterRegistration(converter = YesNoConverter.class)
-package com.omniterasoft.springboot.sample.domain.model.common;
+package com.omniterasoft.springboot.sample.common.jpa;
 
 import org.hibernate.annotations.ConverterRegistration;
 import org.hibernate.annotations.GenericGenerator;

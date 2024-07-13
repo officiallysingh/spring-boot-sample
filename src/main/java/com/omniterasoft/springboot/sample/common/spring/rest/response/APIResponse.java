@@ -22,13 +22,13 @@ import org.springframework.context.MessageSourceResolvable;
 import org.springframework.util.Assert;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({"messages", "warnings", "errorCount", "errors"})
+@JsonPropertyOrder({"successes", "warnings", "errorCount", "errors"})
 public class APIResponse<T> {
 
   private static final Set<String> RESERVED_PROPERTIES =
-      new HashSet<>(Arrays.asList("messages", "warnings", "errorCount", "errors"));
+      new HashSet<>(Arrays.asList("successes", "warnings", "errorCount", "errors"));
 
-  private final Set<String> messages;
+  private final Set<String> successes;
 
   private final Set<String> warnings;
 
@@ -46,10 +46,10 @@ public class APIResponse<T> {
   @JsonAnyGetter
   @JsonInclude(JsonInclude.Include.NON_EMPTY)
   public Map<String, Object> getValues() {
-    if (CollectionUtils.isNotEmpty(this.messages) || CollectionUtils.isNotEmpty(this.warnings)) {
+    if (CollectionUtils.isNotEmpty(this.successes) || CollectionUtils.isNotEmpty(this.warnings)) {
       Map<String, Object> returnValues = Maps.newLinkedHashMap();
-      if (CollectionUtils.isNotEmpty(this.messages)) {
-        returnValues.put("messages", this.messages);
+      if (CollectionUtils.isNotEmpty(this.successes)) {
+        returnValues.put("successes", this.successes);
       }
       if (CollectionUtils.isNotEmpty(this.warnings)) {
         returnValues.put("warnings", this.warnings);
@@ -62,7 +62,7 @@ public class APIResponse<T> {
   }
 
   private APIResponse(final List<T> errors) {
-    this.messages = Sets.newLinkedHashSet();
+    this.successes = Sets.newLinkedHashSet();
     this.warnings = Sets.newLinkedHashSet();
     this.errors = errors;
     this.errorCount = errors.size();
@@ -70,14 +70,14 @@ public class APIResponse<T> {
   }
 
   private APIResponse(final Map<String, Object> values) {
-    this.messages = Sets.newLinkedHashSet();
+    this.successes = Sets.newLinkedHashSet();
     this.warnings = Sets.newLinkedHashSet();
     this.errors = Lists.newArrayList();
     this.values = values;
   }
 
   private APIResponse() {
-    this.messages = Sets.newLinkedHashSet();
+    this.successes = Sets.newLinkedHashSet();
     this.warnings = Sets.newLinkedHashSet();
     this.errors = Lists.newArrayList();
     this.values = Maps.newLinkedHashMap();
@@ -149,24 +149,24 @@ public class APIResponse<T> {
     return this;
   }
 
-  public APIResponse<T> addMessage(final String... message) {
+  public APIResponse<T> addSuccess(final String... message) {
     Assert.notEmpty(message, "'message' must not be null or empty");
     Assert.noNullElements(message, "'message' must not be not contain null elements");
-    this.messages.addAll(Arrays.asList(message));
+    this.successes.addAll(Arrays.asList(message));
     return this;
   }
 
-  public APIResponse<T> addMessage(final MessageResolver... message) {
+  public APIResponse<T> addSuccess(final MessageResolver... message) {
     Assert.notEmpty(message, "'message' must not be null or empty");
     Assert.noNullElements(message, "'message' must not be not contain null elements");
-    this.messages.addAll(Arrays.stream(message).map(MessageProvider::getMessage).toList());
+    this.successes.addAll(Arrays.stream(message).map(MessageProvider::getMessage).toList());
     return this;
   }
 
-  public APIResponse<T> addMessage(final MessageSourceResolvable... message) {
+  public APIResponse<T> addSuccess(final MessageSourceResolvable... message) {
     Assert.notEmpty(message, "'message' must not be null or empty");
     Assert.noNullElements(message, "'message' must not be not contain null elements");
-    this.messages.addAll(Arrays.stream(message).map(MessageProvider::getMessage).toList());
+    this.successes.addAll(Arrays.stream(message).map(MessageProvider::getMessage).toList());
     return this;
   }
 

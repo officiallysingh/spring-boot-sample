@@ -1,7 +1,7 @@
 package com.omniterasoft.springboot.sample.domain.model;
 
-import com.gangatourism.ets.util.Constants;
-import com.omniterasoft.springboot.sample.domain.model.common.AbstractEntity;
+import com.omniterasoft.springboot.sample.common.jpa.AbstractEntity;
+import com.omniterasoft.springboot.sample.common.util.RegularExpressions;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Index;
@@ -33,14 +33,14 @@ public class Employee extends AbstractEntity<Long> {
 
   @NotEmpty
   @Size(min = 5, max = 10)
-  @Pattern(regexp = Constants.REGEX_EMPLOYEE_CODE)
+  @Pattern(regexp = RegularExpressions.REGEX_EMPLOYEE_CODE)
   @NaturalId
   @Column(name = "code", updatable = false, nullable = false, length = 20)
   private String code;
 
   @NotEmpty
   @Size(min = 3, max = 50)
-  @Pattern(regexp = Constants.REGEX_ALPHABETS_AND_SPACES)
+  @Pattern(regexp = RegularExpressions.REGEX_ALPHABETS_AND_SPACES)
   @Setter
   @Column(name = "name", nullable = false, length = 50)
   private String name;

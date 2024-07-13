@@ -1,7 +1,7 @@
 package com.omniterasoft.springboot.sample.domain.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gangatourism.ets.util.Constants;
+import com.omniterasoft.springboot.sample.common.util.RegularExpressions;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
@@ -15,7 +15,7 @@ import org.apache.commons.lang3.StringUtils;
 public record EmployeeUpdationRQ(
     @NotEmpty
         @Size(min = 3, max = 50)
-        @Pattern(regexp = Constants.REGEX_ALPHABETS_AND_SPACES)
+        @Pattern(regexp = RegularExpressions.REGEX_ALPHABETS_AND_SPACES)
         @Schema(description = "Employee name", example = "Rajveer Singh")
         String name,
     @Past @NotNull @Schema(description = "Employee Date of Birth", example = "1984-06-25")

@@ -101,11 +101,11 @@ public class AppInitializer {
 
     boolean isProblemEnabled = env.getProperty("problem.enabled", Boolean.class, true);
     boolean problemHandling =
-        isProblemEnabled && ClassUtils.doesClassExist("com.ksoot.problem.core.Problem");
+        isProblemEnabled && ClassUtils.isPresent("com.ksoot.problem.core.Problem");
 
     boolean security =
         env.getProperty("application.security.enabled", Boolean.class, false)
-            && ClassUtils.doesClassExist(
+            && ClassUtils.isPresent(
                 "org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration");
 
     String securityFeature = security ? "security" : "";

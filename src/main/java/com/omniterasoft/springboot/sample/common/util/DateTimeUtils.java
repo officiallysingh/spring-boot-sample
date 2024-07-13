@@ -29,11 +29,19 @@ public class DateTimeUtils {
 
   public static final ZoneId ZONE_ID_IST = ZoneId.of("Asia/Kolkata");
 
+  public static final ZoneOffset ZONE_OFFSET_UTC = ZoneOffset.UTC;
+
+  public static final ZoneOffset ZONE_OFFSET_IST = ZoneOffset.ofHoursMinutes(5, 30);
+
   public static final TimeZone TIME_ZONE_UTC = TimeZone.getTimeZone(ZONE_ID_UTC);
 
   public static final TimeZone TIME_ZONE_IST = TimeZone.getTimeZone(ZONE_ID_IST);
 
   public static final ZoneId SYSTEM_ZONE_ID = ZoneId.systemDefault();
+
+  public static final ZoneOffset SYSTEM_OFFSET_ID =
+      SYSTEM_ZONE_ID.getRules().getOffset(java.time.Instant.now());
+  ;
 
   public static final String ZONE_DISPALY_NAME =
       SYSTEM_ZONE_ID.getDisplayName(TextStyle.FULL, Locale.getDefault())

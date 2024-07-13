@@ -36,7 +36,7 @@ class EmployeeController implements EmployeeApi {
     final UUID id = this.employeeService.createEmployee(request).getId();
     return ResponseEntity.created(
             linkTo(methodOn(EmployeeController.class).getEmployee(id)).withSelfRel().toUri())
-        .body(APIResponse.newInstance().addMessage(GeneralMessageResolver.RECORD_CREATED));
+        .body(APIResponse.newInstance().addSuccess(GeneralMessageResolver.RECORD_CREATED));
   }
 
   @Override
@@ -57,7 +57,7 @@ class EmployeeController implements EmployeeApi {
             linkTo(methodOn(EmployeeController.class).getEmployee(employee.getId()))
                 .withSelfRel()
                 .toUri())
-        .body(APIResponse.newInstance().addMessage(GeneralMessageResolver.RECORD_UPDATED));
+        .body(APIResponse.newInstance().addSuccess(GeneralMessageResolver.RECORD_UPDATED));
   }
 
   @Override
@@ -72,6 +72,6 @@ class EmployeeController implements EmployeeApi {
   public ResponseEntity<APIResponse<?>> deleteEmployee(final UUID id) {
     this.employeeService.deleteEmployee(id);
     return ResponseEntity.ok(
-        APIResponse.newInstance().addMessage(GeneralMessageResolver.RECORD_DELETED));
+        APIResponse.newInstance().addSuccess(GeneralMessageResolver.RECORD_DELETED));
   }
 }

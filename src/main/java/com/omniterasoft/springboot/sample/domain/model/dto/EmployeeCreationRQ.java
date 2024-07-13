@@ -1,6 +1,6 @@
 package com.omniterasoft.springboot.sample.domain.model.dto;
 
-import com.gangatourism.ets.util.Constants;
+import com.omniterasoft.springboot.sample.common.util.RegularExpressions;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
@@ -12,7 +12,7 @@ import lombok.Builder;
 public record EmployeeCreationRQ(
     @NotEmpty
         @Size(min = 5, max = 10)
-        @Pattern(regexp = Constants.REGEX_EMPLOYEE_CODE)
+        @Pattern(regexp = RegularExpressions.REGEX_EMPLOYEE_CODE)
         @Schema(
             description =
                 "Employee code. 5 to 10 char long alphanumeric String, number of capital letters allowed",
@@ -20,7 +20,7 @@ public record EmployeeCreationRQ(
         String code,
     @NotEmpty
         @Size(min = 3, max = 50)
-        @Pattern(regexp = Constants.REGEX_ALPHABETS_AND_SPACES)
+        @Pattern(regexp = RegularExpressions.REGEX_ALPHABETS_AND_SPACES)
         @Schema(description = "Employee name", example = "Rajveer Singh")
         String name,
     @Past @NotNull @Schema(description = "Employee Date of Birth", example = "1984-06-25")
