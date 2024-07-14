@@ -16,7 +16,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Setter
 @NoArgsConstructor
 @ToString
-@ConditionalOnProperty(prefix = "application.mongodb.auditing", name = "enabled", havingValue = "true")
+@ConditionalOnProperty(
+    prefix = "application.mongodb.auditing",
+    name = "enabled",
+    havingValue = "true")
 @ConfigurationProperties(prefix = "application.mongodb")
 @Valid
 public class MongoAuditProperties {

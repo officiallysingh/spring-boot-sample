@@ -88,7 +88,7 @@ public class EmployeeServiceTest {
 
   @Test
   @DisplayName("Test Create State successfully")
-  public void testCreateEmployee_Success() throws Exception {
+  public void testCreateEmployee_Success() {
     final EmployeeCreationRQ request = this.newEmployeeCreateRequest();
 
     final Employee employee = this.newState(request);

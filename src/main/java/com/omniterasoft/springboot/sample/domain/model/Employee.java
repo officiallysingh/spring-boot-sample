@@ -27,8 +27,8 @@ import org.hibernate.envers.Audited;
 @DynamicUpdate
 @Entity
 @Table(
-    name = "states",
-    indexes = {@Index(name = "idx_states_code", columnList = "code")})
+    name = "employees",
+    indexes = {@Index(name = "idx_employees_code", columnList = "code")})
 public class Employee extends AbstractEntity<Long> {
 
   @NotEmpty
