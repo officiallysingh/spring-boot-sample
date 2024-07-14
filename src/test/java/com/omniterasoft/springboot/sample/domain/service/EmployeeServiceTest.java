@@ -63,6 +63,7 @@ public class EmployeeServiceTest {
 
   // @Autowired
   // private MessageSource messageSource;
+  // private MessageSource messageSource;
 
   @InjectMocks private EmployeeService employeeService;
 
@@ -74,11 +75,11 @@ public class EmployeeServiceTest {
         .build();
   }
 
-  private Employee newState(final EmployeeCreationRQ request) {
+  private Employee newEmployee(final EmployeeCreationRQ request) {
     return Employee.builder().code(request.code()).name(request.name()).build();
   }
 
-  private Employee newState() {
+  private Employee newEmployee() {
     return Employee.builder()
         .code(TEST_EMPLOYEE_CODE)
         .name("Amit Dahiya")
@@ -87,17 +88,17 @@ public class EmployeeServiceTest {
   }
 
   @Test
-  @DisplayName("Test Create State successfully")
+  @DisplayName("Test Create Employee successfully")
   public void testCreateEmployee_Success() {
     final EmployeeCreationRQ request = this.newEmployeeCreateRequest();
 
-    final Employee employee = this.newState(request);
+    final Employee employee = this.newEmployee(request);
     when(employeeRepository.save(any(Employee.class))).thenReturn(employee);
 
     final Employee employeeResponse = this.employeeService.createEmployee(request);
 
     assertAll(
-        "Verify Create State response",
+        "Verify Create Employee response",
         //        () -> assertNotNull(employeeResponse,
         // EMPLOYEE_RESPONSE_SHOULD_NOT_BE_NULL_MESSAGE),
         () ->
@@ -109,15 +110,15 @@ public class EmployeeServiceTest {
   }
 
   @Test
-  @DisplayName("Test Get State by Id or Code successfully")
-  public void testGetState_ByIdOrCode_Success() {
-    final Employee employee = this.newState();
+  @DisplayName("Test Get Employee by Id or Code successfully")
+  public void testGetEmployee_ByIdOrCode_Success() {
+    final Employee employee = this.newEmployee();
     when(this.employeeRepository.findById(TEST_OBJECT_ID)).thenReturn(Optional.of(employee));
 
     final Employee employeeResponse = this.employeeService.getEmployeeById(TEST_OBJECT_ID);
 
     assertAll(
-        "Verify Get State by Id or Code response",
+        "Verify Get Employee by Id or Code response",
         () -> assertNotNull(employeeResponse, EMPLOYEE_RESPONSE_SHOULD_NOT_BE_NULL_MESSAGE),
         () ->
             assertEquals(
@@ -129,8 +130,8 @@ public class EmployeeServiceTest {
 
   //  @Disabled
   @Test
-  @DisplayName("Test Get State by Id or Code failure due to non existent record")
-  public void testGetState_ById_NotFound_Failure() throws Exception {
+  @DisplayName("Test Get Employee by Id or Code failure due to non existent record")
+  public void testGetEmployee_ById_NotFound_Failure() {
 
     //    when(this.messageSource.getMessage(any(MessageSourceResolvable.class),
     // any(Locale.class))).thenReturn("Some message");
@@ -144,33 +145,33 @@ public class EmployeeServiceTest {
   }
 
   @Test
-  @DisplayName("Test validate State for given code success")
-  public void testValidateState_ByCode_Success() {
+  @DisplayName("Test validate Employee for given code success")
+  public void testValidateEmployee_ByCode_Success() {
     when(this.employeeRepository.existsByCode(TEST_EMPLOYEE_CODE)).thenReturn(true);
     assertTrue(
         this.employeeService.doesEmployeeExist(TEST_EMPLOYEE_CODE),
-        "State should exist with code: " + TEST_EMPLOYEE_CODE);
+        "Employee should exist with code: " + TEST_EMPLOYEE_CODE);
   }
 
   @Test
-  @DisplayName("Test validate State for given code failure")
-  public void testValidateState_ByCode_Failure() {
+  @DisplayName("Test validate Employee for given code failure")
+  public void testValidateEmployee_ByCode_Failure() {
     when(this.employeeRepository.existsByCode(TEST_EMPLOYEE_CODE)).thenReturn(false);
     assertFalse(
         this.employeeService.doesEmployeeExist(TEST_EMPLOYEE_CODE),
-        "State should not exist with code: " + TEST_EMPLOYEE_CODE);
+        "Employee should not exist with code: " + TEST_EMPLOYEE_CODE);
   }
 
   @Test
-  @DisplayName("Test update State successfully")
-  public void testUpdateEmployee_Success() throws Exception {
+  @DisplayName("Test update Employee successfully")
+  public void testUpdateEmployee_Success() {
     final EmployeeUpdationRQ request =
         EmployeeUpdationRQ.builder()
             .name("Another Name")
             .dob(LocalDate.now().minusYears(20))
             .build();
 
-    final Employee existingEmployee = this.newState();
+    final Employee existingEmployee = this.newEmployee();
     when(this.employeeRepository.findById(TEST_OBJECT_ID))
         .thenReturn(Optional.of(existingEmployee));
 
@@ -185,7 +186,7 @@ public class EmployeeServiceTest {
   private void assertUpdateEmployeeResponse(
       final EmployeeUpdationRQ request, final Employee response) {
     assertAll(
-        "Verify Update State response",
+        "Verify Update Employee response",
         () -> assertNotNull(response, EMPLOYEE_RESPONSE_SHOULD_NOT_BE_NULL_MESSAGE),
         () ->
             assertEquals(
@@ -203,8 +204,8 @@ public class EmployeeServiceTest {
 
   //  @Disabled
   @Test
-  @DisplayName("Test update State failure for non existent State record with given Id")
-  public void testUpdateEmployee_NotFound_Failure() throws Exception {
+  @DisplayName("Test update Employee failure for non existent Employee record with given Id")
+  public void testUpdateEmployee_NotFound_Failure() {
     final EmployeeUpdationRQ request =
         EmployeeUpdationRQ.builder().name("Yet another name").build();
 
@@ -225,15 +226,15 @@ public class EmployeeServiceTest {
   }
 
   @Test
-  @DisplayName("Test get all States successfully")
+  @DisplayName("Test get all Employees successfully")
   public void testGetAllEmployees_Success() {
-    final Employee employee = this.newState();
+    final Employee employee = this.newEmployee();
     when(this.employeeRepository.findAll()).thenReturn(List.of(employee, employee));
     final List<Employee> response = this.employeeService.getAllEmployees();
 
     assertAll(
-        "Verify Get All States response",
-        () -> assertNotNull(response, "Get all states response should not be null"),
+        "Verify Get All Employees response",
+        () -> assertNotNull(response, "Get all Employees response should not be null"),
         () -> assertEquals(response.size(), 2, "Expected number of records is 2"));
   }
 }

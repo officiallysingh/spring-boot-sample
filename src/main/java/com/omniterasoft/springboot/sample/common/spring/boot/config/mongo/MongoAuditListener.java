@@ -31,7 +31,10 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
 import org.springframework.util.Assert;
 
 @Configuration
-@ConditionalOnProperty(prefix = "hammer.mongodb.auditing", name = "enabled", havingValue = "true")
+@ConditionalOnProperty(
+    prefix = "application.mongodb.auditing",
+    name = "enabled",
+    havingValue = "true")
 @Slf4j
 @RequiredArgsConstructor
 public class MongoAuditListener implements InitializingBean {

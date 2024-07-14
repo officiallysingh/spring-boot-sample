@@ -1,9 +1,11 @@
 package com.omniterasoft.springboot.sample;
 
+import io.mongock.runner.springboot.EnableMongock;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
+@EnableMongock
 // @OpenAPIDefinition(servers = {@Server(url = "${server.servlet.context-path}")})
 public class SpringBootSampleApplication {
 

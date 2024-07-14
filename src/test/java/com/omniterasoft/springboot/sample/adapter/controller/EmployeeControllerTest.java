@@ -130,7 +130,7 @@ class EmployeeControllerTest {
   }
 
   @Test
-  @DisplayName("Test Create Employee failure due to null GST code")
+  @DisplayName("Test Create Employee failure due to null DOB")
   public void testCreateEmployee_WithNullDOB_Failure() throws Exception {
     final EmployeeCreationRQ request =
         this.newEmployeeCreateRequest(TEST_EMPLOYEE_CODE, "Rajesh Kumar", null);
@@ -147,7 +147,7 @@ class EmployeeControllerTest {
   }
 
   @Test
-  @DisplayName("Test Create Employee failure due to null GST code")
+  @DisplayName("Test Create Employee failure invalid Employee Name format")
   public void testCreateEmployee_WithInvalidNameFormat_Failure() throws Exception {
     final EmployeeCreationRQ request =
         this.newEmployeeCreateRequest(TEST_EMPLOYEE_CODE, "Rajesh Kumar 3_", null);

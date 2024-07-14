@@ -1,4 +1,4 @@
-package com.omniterasoft.springboot.sample.migration;
+package com.omniterasoft.springboot.sample.common.spring.boot.config.mongo;
 
 import static com.omniterasoft.springboot.sample.common.mongo.MongoSchema.*;
 
@@ -28,18 +28,13 @@ import org.springframework.data.mongodb.core.index.Index;
 @ChangeUnit(id = "init-master-schema", order = "001", author = "rajveer")
 public class InitMasterSchema {
 
-  //    private final static String CATEGORIES_DATA_FILE =
-  // "classpath:mongo/migration/categories.csv";
-  //    private final static String SUB_CATEGORIES_DATA_FILE =
-  // "classpath:mongo/migration/sub_categories.csv";
-  private static final String STATES_DATA_FILE = "mongo/migration/states.csv";
-  private static final String CITIES_DATA_FILE = "mongo/migration/cities.csv";
+  private static final String STATES_DATA_FILE = "migration/mongo/states.csv";
+  private static final String CITIES_DATA_FILE = "migration/mongo/cities.csv";
 
   @BeforeExecution
   public void beforeExecution(final MongoTemplate mongoTemplate) {
     this.ensureStateIndexes(mongoTemplate);
     this.ensureCityIndexes(mongoTemplate);
-    this.ensureAreaIndexes(mongoTemplate);
   }
 
   private void ensureStateIndexes(final MongoTemplate mongoTemplate) {
@@ -64,18 +59,6 @@ public class InitMasterSchema {
     mongoTemplate.indexOps(COLLECTION_CITY).ensureIndex(unqIdxCityCode);
     final Index idxStateId = new Index().named("idx_state_id").on("state", Sort.Direction.ASC);
     mongoTemplate.indexOps(COLLECTION_CITY).ensureIndex(idxStateId);
-  }
-
-  private void ensureAreaIndexes(final MongoTemplate mongoTemplate) {
-    final Index unqIdxCityCodeName =
-        new Index()
-            .named("uk_code_name")
-            .on("code", Sort.Direction.ASC)
-            .on("name", Sort.Direction.ASC)
-            .unique();
-    mongoTemplate.indexOps(COLLECTION_AREA).ensureIndex(unqIdxCityCodeName);
-    final Index idxCityId = new Index().named("idx_city_id").on("city", Sort.Direction.ASC);
-    mongoTemplate.indexOps(COLLECTION_AREA).ensureIndex(idxCityId);
   }
 
   @RollbackBeforeExecution

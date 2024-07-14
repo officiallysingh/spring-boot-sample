@@ -35,6 +35,7 @@ spring:
     hibernate:
       ddl-auto: validate
     show-sql: false
+    open-in-view: true
     properties:
       '[hibernate.show_sql]': false
       '[hibernate.format_sql]': true
@@ -45,7 +46,7 @@ spring:
     enabled: true
     locations:
       - classpath:/migration/postgres
-    baseline-on-migrate: true
+#    baseline-on-migrate: true
   messages:
     basename: i18n/messages,i18n/errors,i18n/problems
     use-code-as-default-message: true
@@ -71,7 +72,7 @@ mongock:
   index-creation: true
   #    transaction-strategy: change_unit
   migration-scan-package:
-    - com.omniterasoft.springboot.sample.migration
+    - com.omniterasoft.springboot.sample.common.spring.boot.config.mongo.InitMasterSchema
 
 #------------------------- Swagger configuration -------------------------
 springdoc:
