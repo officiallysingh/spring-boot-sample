@@ -36,6 +36,7 @@ spring:
       ddl-auto: validate
     show-sql: false
     open-in-view: true
+    database: POSTGRESQL
     properties:
       '[hibernate.show_sql]': false
       '[hibernate.format_sql]': true
@@ -72,7 +73,7 @@ mongock:
   index-creation: true
   #    transaction-strategy: change_unit
   migration-scan-package:
-    - com.omniterasoft.springboot.sample.common.spring.boot.config.mongo.InitMasterSchema
+    - com.ksoot.domain.migration.InitMongoDB
 
 #------------------------- Swagger configuration -------------------------
 springdoc:
