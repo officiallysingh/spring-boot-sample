@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @RequestMapping("/v1/location")
-@Tag(name = "Location", description = "management APIs. Backed by PostgresDB")
+@Tag(name = "Location", description = "management APIs. Backed by MongoDB")
 public interface LocationApi extends Api {
 
   // -------- States ----------
