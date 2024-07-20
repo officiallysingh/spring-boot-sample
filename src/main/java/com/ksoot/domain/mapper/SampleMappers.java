@@ -24,12 +24,12 @@ public interface SampleMappers {
 
   SampleMappers INSTANCE = Mappers.getMapper(SampleMappers.class);
 
-  public static final Sort SORT_BY_NAME = Sort.by(Sort.Order.asc("name").ignoreCase());
+  Sort SORT_BY_NAME = Sort.by(Sort.Order.asc("name").ignoreCase());
 
-  public static final Comparator<State> STATE_BY_NAME_COMPARATOR =
+  Comparator<State> STATE_BY_NAME_COMPARATOR =
       Comparator.comparing(state -> state.getName().toLowerCase());
 
-  public static final Comparator<City> CITY_BY_NAME_COMPARATOR =
+  Comparator<City> CITY_BY_NAME_COMPARATOR =
       Comparator.comparing(city -> city.getName().toLowerCase());
 
   EmployeeVM toEmployeeVM(final Employee employee);
