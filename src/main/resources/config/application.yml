@@ -13,6 +13,9 @@
 spring:
   application:
     name: spring-boot-sample-service
+  docker:
+    compose:
+      enabled: false
 
   #------------------------- MongoDB configuration -------------------------
   data:
@@ -110,7 +113,7 @@ problem:
   cause-chains-enabled: false
 
 server:
-  port: 8080
+  port: 8090
   forward-headers-strategy: framework
 #    servlet:
 #        context-path: /api

@@ -2,6 +2,8 @@ package com.ksoot.common.config;
 
 import com.ksoot.common.mongo.MongoAuditProperties;
 import com.ksoot.common.util.DateTimeUtils;
+import com.ksoot.metadata.config.ClassReadConverter;
+import com.ksoot.metadata.config.ClassWriteConverter;
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import java.time.Instant;
@@ -44,6 +46,8 @@ public class MongoDBConfig extends AbstractMongoClientConfiguration {
   private final MongoProperties mongoProperties;
 
   private final MongoAuditProperties mongoAuditProperties;
+
+  //  private final ObjectMapper objectMapper;
 
   @Override
   protected Set<Class<?>> getInitialEntitySet() throws ClassNotFoundException {
@@ -114,6 +118,14 @@ public class MongoDBConfig extends AbstractMongoClientConfiguration {
     converters.add(new ZonedDateTimeWriteConverter());
     converters.add(new OffsetDateTimeReadConverter());
     converters.add(new OffsetDateTimeWriteConverter());
+
+    //		converters.add(new PropertyReadConverter(this.objectMapper));
+    //		converters.add(new PropertyWriteConverter());
+    //		converters.add(new CompositePropertyReadConverter(this.objectMapper));
+    //		converters.add(new CompositePropertyWriteConverter(this.objectMapper));
+    converters.add(new ClassWriteConverter());
+    converters.add(new ClassReadConverter());
+
     return new MongoCustomConversions(converters);
   }
 
