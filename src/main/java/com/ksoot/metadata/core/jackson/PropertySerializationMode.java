@@ -24,9 +24,9 @@ public enum PropertySerializationMode {
   ALL;
 
   /**
-   * Get the default {@link PropertyBoxSerializationMode}.
+   * Get the default {@link PropertySerializationMode}.
    *
-   * @return The default {@link PropertyBoxSerializationMode}
+   * @return The default {@link PropertySerializationMode}
    */
   public static PropertySerializationMode getDefault() {
     return NAME_VALUE;

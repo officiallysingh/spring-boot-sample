@@ -98,10 +98,6 @@ public class MetaObjectController {
 
     MetaObject employee = MetaObject.of("Rajveer Singh", LocalDate.now(), compositeProperty);
 
-    //		return this.employeeRepository.save(employee).map(ResponseEntity::ok);
-    //		return Mono.just(ResponseEntity.ok(employee));
-
-    //    return ResponseEntity.ok(this.metaObjectRepository.findAll().getLast());
-    return ResponseEntity.ok(null);
+    return ResponseEntity.ok(this.metaObjectRepository.save(employee));
   }
 }
