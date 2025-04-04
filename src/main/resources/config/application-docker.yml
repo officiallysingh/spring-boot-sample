@@ -16,7 +16,7 @@ problem:
   cause-chains-enabled: false
 
 #server:
-  #  port: 8080
+  #  port: 800
   #servlet:
   #context-path:
 

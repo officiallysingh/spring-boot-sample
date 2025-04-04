@@ -125,7 +125,7 @@ problem:
   cause-chains-enabled: false
 
 server:
-  port: 8080
+  port: 8090
   forward-headers-strategy: framework
 #    servlet:
 #        context-path: /api

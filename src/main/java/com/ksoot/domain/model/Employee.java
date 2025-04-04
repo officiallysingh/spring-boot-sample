@@ -35,7 +35,7 @@ public class Employee extends AbstractEntity {
   @Size(min = 5, max = 10)
   @Pattern(regexp = RegularExpressions.REGEX_EMPLOYEE_CODE)
   @NaturalId
-  @Column(name = "code", updatable = false, nullable = false, length = 20)
+  @Column(name = "code", updatable = false, nullable = false, length = 20, unique = true)
   private String code;
 
   @NotEmpty
