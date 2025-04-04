@@ -8,11 +8,13 @@ public class RevisionEntityListener implements RevisionListener {
 
   @Override
   public void newRevision(Object revisionEntity) {
-    if (revisionEntity instanceof Revision) {
-      Revision revisionInfo = (Revision) revisionEntity;
+    if (revisionEntity instanceof RevisionEntity revisionEntityInfo) {
       // revisionInfo.setActor(IdentityHelper.getAuditUserId());
-      revisionInfo.setActor(CommonConstants.SYSTEM_USER);
-      revisionInfo.setDatetime(DateTimeUtils.nowZonedDateTimeUTC());
+      revisionEntityInfo.setActor(CommonConstants.SYSTEM_USER);
+      revisionEntityInfo.setDatetime(DateTimeUtils.nowOffsetDateTimeUTC());
+    } else {
+      throw new IllegalStateException(
+          "revisionEntity is not of expected type: " + RevisionEntity.class.getName());
     }
   }
 }

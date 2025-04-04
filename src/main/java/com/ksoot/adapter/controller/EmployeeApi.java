@@ -1,10 +1,14 @@
 package com.ksoot.adapter.controller;
 
+import static com.ksoot.common.CommonConstants.DEFAULT_PAGE_SIZE;
 import static com.ksoot.common.util.rest.ApiConstants.*;
 import static com.ksoot.common.util.rest.ApiStatus.*;
 
+import com.ksoot.common.jpa.RevisionRecord;
+import com.ksoot.common.util.pagination.PaginatedResource;
 import com.ksoot.common.util.rest.Api;
 import com.ksoot.common.util.rest.response.APIResponse;
+import com.ksoot.domain.model.Employee;
 import com.ksoot.domain.model.dto.EmployeeCreationRQ;
 import com.ksoot.domain.model.dto.EmployeeUpdationRQ;
 import com.ksoot.domain.model.dto.EmployeeVM;
@@ -17,7 +21,9 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import java.util.List;
-import java.util.UUID;
+import org.springdoc.core.annotations.ParameterObject;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -73,12 +79,9 @@ public interface EmployeeApi extends Api {
       })
   @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
   ResponseEntity<EmployeeVM> getEmployee(
-      @Parameter(
-              description = "Employee Id",
-              required = true,
-              example = "550e8400-e29b-41d4-a716-446655440000")
+      @Parameter(description = "Employee Id", required = true, example = "1")
           @PathVariable(name = "id")
-          final UUID id);
+          final Long id);
 
   @Operation(operationId = "get-all-employees", summary = "Get all Employees")
   @ApiResponses(
@@ -110,12 +113,9 @@ public interface EmployeeApi extends Api {
       consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE)
   ResponseEntity<APIResponse<?>> updateEmployee(
-      @Parameter(
-              description = "Employee Id or Code",
-              required = true,
-              example = "550e8400-e29b-41d4-a716-446655440000")
+      @Parameter(description = "Employee Id or Code", required = true, example = "1")
           @PathVariable(name = "id")
-          final UUID id,
+          final Long id,
       @Parameter(description = "Update Employee request", required = true) @RequestBody @Valid
           final EmployeeUpdationRQ request);
 
@@ -133,10 +133,22 @@ public interface EmployeeApi extends Api {
       })
   @DeleteMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
   ResponseEntity<APIResponse<?>> deleteEmployee(
-      @Parameter(
-              description = "Employee Id",
-              required = true,
-              example = "550e8400-e29b-41d4-a716-446655440000")
+      @Parameter(description = "Employee Id", required = true, example = "1")
           @PathVariable(name = "id")
-          final UUID id);
+          final Long id);
+
+  @Operation(operationId = "get-employees-audit-history", summary = "Get Employees Audit History")
+  @ApiResponses(
+      value = {
+        @ApiResponse(
+            responseCode = SC_200,
+            description =
+                "States Audit History returned successfully. Returns an empty Page if no records found")
+      })
+  @GetMapping(path = "/audit-history/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+  PaginatedResource<RevisionRecord<Integer, Employee, EmployeeVM>> getEmployeesAuditHistory(
+      @Parameter(description = "Employee Id", required = true, example = "1")
+          @PathVariable(name = "id")
+          final Long id,
+      @ParameterObject @PageableDefault(size = DEFAULT_PAGE_SIZE) final Pageable pageRequest);
 }

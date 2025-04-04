@@ -7,8 +7,10 @@ import com.ksoot.domain.model.dto.EmployeeUpdationRQ;
 import com.ksoot.problem.core.Problems;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.history.Revision;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,7 +33,7 @@ public class EmployeeService {
   }
 
   @Transactional(readOnly = true)
-  public Employee getEmployeeById(final UUID id) {
+  public Employee getEmployeeById(final Long id) {
     return this.employeeRepository.findById(id).orElseThrow(Problems::notFound);
   }
 
@@ -41,7 +43,7 @@ public class EmployeeService {
   }
 
   @Transactional
-  public Employee updateEmployee(final UUID id, final EmployeeUpdationRQ request) {
+  public Employee updateEmployee(final Long id, final EmployeeUpdationRQ request) {
     final Employee employee = this.employeeRepository.findById(id).orElseThrow(Problems::notFound);
 
     Optional.ofNullable(request.name()).ifPresent(employee::setName);
@@ -51,10 +53,16 @@ public class EmployeeService {
   }
 
   @Transactional
-  public void deleteEmployee(final UUID id) {
+  public void deleteEmployee(final Long id) {
     if (!this.employeeRepository.existsById(id)) {
       throw Problems.notFound();
     }
     this.employeeRepository.deleteById(id);
+  }
+
+  @Transactional(readOnly = true)
+  public Page<Revision<Integer, Employee>> getEmployeeAuditHistory(
+      final Long id, final Pageable pageRequest) {
+    return this.employeeRepository.findRevisions(id, pageRequest);
   }
 }

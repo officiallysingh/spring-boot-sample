@@ -1,33 +1,34 @@
 package com.ksoot.common.jpa;
 
-import static jakarta.persistence.GenerationType.UUID;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.MappedSuperclass;
-import jakarta.persistence.Version;
-import java.io.Serializable;
-import java.util.UUID;
+import com.ksoot.common.Identifiable;
+import com.ksoot.common.Versionable;
+import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-@MappedSuperclass
 @NoArgsConstructor
-public class AbstractEntity<V extends Comparable<V> & Serializable> {
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
+@EqualsAndHashCode(of = "id")
+@MappedSuperclass
+// @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class AbstractEntity implements Identifiable<Long>, Versionable<Long> {
 
   @Id
-  @GeneratedValue(strategy = UUID)
-  protected UUID id;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(nullable = false)
+  protected Long id;
 
-  public UUID getId() {
-    return id;
+  @Version protected Long version;
+
+  @Override
+  public Long getId() {
+    return this.id;
   }
 
-  @Version
-  @Column(name = "version", nullable = false)
-  protected V version;
-
-  public V getVersion() {
-    return version;
+  @Override
+  public Long getVersion() {
+    return this.version;
   }
 }

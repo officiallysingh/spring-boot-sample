@@ -29,7 +29,7 @@ import org.hibernate.envers.Audited;
 @Table(
     name = "employees",
     indexes = {@Index(name = "idx_employees_code", columnList = "code")})
-public class Employee extends AbstractEntity<Long> {
+public class Employee extends AbstractEntity {
 
   @NotEmpty
   @Size(min = 5, max = 10)

@@ -1,5 +1,6 @@
 package com.ksoot.domain.mapper;
 
+import com.ksoot.common.jpa.RevisionRecord;
 import com.ksoot.domain.SampleErrorTypes;
 import com.ksoot.domain.model.City;
 import com.ksoot.domain.model.Employee;
@@ -11,6 +12,7 @@ import com.ksoot.problem.core.Problems;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.mapstruct.Mapper;
@@ -18,6 +20,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import org.mapstruct.factory.Mappers;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.history.Revision;
 
 @Mapper
 public interface SampleMappers {
@@ -31,6 +34,15 @@ public interface SampleMappers {
 
   Comparator<City> CITY_BY_NAME_COMPARATOR =
       Comparator.comparing(city -> city.getName().toLowerCase());
+
+  Function<List<Revision<Integer, Employee>>, List<RevisionRecord<Integer, Employee, EmployeeVM>>>
+      EMPLOYEE_AUDIT_PAGE_TRANSFORMER =
+          revisions ->
+              revisions.stream()
+                  .map(
+                      revision ->
+                          new RevisionRecord<>(revision, SampleMappers.INSTANCE::toEmployeeVM))
+                  .toList();
 
   EmployeeVM toEmployeeVM(final Employee employee);
 

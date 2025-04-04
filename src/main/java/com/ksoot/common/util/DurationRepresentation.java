@@ -124,7 +124,7 @@ public class DurationRepresentation {
         }
         Object value = null;
         switch (ch) {
-            // TODO: Need to handle escaping of '
+          // TODO: Need to handle escaping of '
           case '\'':
             if (inLiteral) {
               buffer = null;

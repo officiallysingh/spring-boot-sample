@@ -7,6 +7,10 @@ import org.springframework.http.HttpStatus;
 
 @Getter
 public enum SampleErrorTypes implements ErrorType {
+  AUDIT_COLLECTION_NOT_FOUND(
+      "audit.collection.not.found",
+      "Audit collection not found for Source collection: {0}",
+      HttpStatus.BAD_REQUEST),
   INVALID_CITY_EXPAND_HEADER(
       "invalid.city.expand.header",
       "Invalid Header "

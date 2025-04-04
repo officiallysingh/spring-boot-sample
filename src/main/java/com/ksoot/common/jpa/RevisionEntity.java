@@ -5,12 +5,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Index;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
-import java.time.ZonedDateTime;
+import java.time.OffsetDateTime;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.envers.DefaultRevisionEntity;
-import org.hibernate.envers.RevisionEntity;
 
 @Getter
 @Setter
@@ -19,14 +18,14 @@ import org.hibernate.envers.RevisionEntity;
 @Table(
     name = "revisions",
     indexes = {@Index(name = "idx_rev_datetime", columnList = "datetime")})
-@RevisionEntity(RevisionEntityListener.class)
-public class Revision extends DefaultRevisionEntity {
+@org.hibernate.envers.RevisionEntity(RevisionEntityListener.class)
+public class RevisionEntity extends DefaultRevisionEntity {
 
   private static final long serialVersionUID = 1L;
 
   @NotNull
   @Column(name = "datetime", updatable = false, nullable = false)
-  private ZonedDateTime datetime;
+  private OffsetDateTime datetime;
 
   @NotNull
   @Column(name = "actor", updatable = false, nullable = false)
